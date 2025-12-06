@@ -2,7 +2,7 @@
 git add .
 
 # 2. Commit the staged changes with a message
-git commit -m "one level working bversion of visual effects with foreground syncronised video stageing and glass panel for quiz question"
+git commit -m "sliding animations implemented for question panel and options grid"
 
 # 3. Push the new commit to the remote GitHub repository
 git push

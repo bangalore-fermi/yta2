@@ -1,23 +1,18 @@
 """
 File: quiz_visuals.py
 Handles the visual composition for the Quiz Template.
-STEP 2: Implements Glass Panel for QUESTION element ONLY.
-FIXED: NameError by correctly initializing p_theme and PREMIUM_THEMES dependency.
+STEP 6: FIXES Animation Lag by compressing travel time (0.2s duration + Elastic Easing).
 """
 
 from moviepy.editor import TextClip, ColorClip, vfx, VideoFileClip 
-import os # Required for internal helpers/cleanup
-import glob # Required for internal helpers/cleanup
-
-# --- REQUIRED IMPORTS FOR PREMIUM VISUALS ---
-from visual_fx_utils import PREMIUM_THEMES, create_glass_panel 
-# --------------------------------------------
+# Ensure visual_fx_utils is imported for glass and themes
+from visual_fx_utils import PREMIUM_THEMES, create_glass_panel, make_motion_func, ease_out_expo, ease_out_back # ADDED ease_out_back
 
 WIDTH = 1080
 HEIGHT = 1920
 
 def force_rgb(clip):
-    """Helper to ensure clips are in RGB mode to prevent rendering errors."""
+    # ... (Helper remains unchanged) ...
     try:
         if hasattr(clip, 'img') and clip.img is not None and clip.img.ndim == 2:
             return clip.fx(vfx.to_RGB)
@@ -50,7 +45,7 @@ def filter_and_trim_clips(clips, limit):
 def build_quiz_visuals(engine, video_proc, video_path, script, timings, total_dur, config):
     """
     Constructs the visual layers for the quiz.
-    STEP 2: Implements Glass Panel for QUESTION.
+    STEP 6: Fixes animation lag.
     """
     
     # 0. Check for Test Render Limit
@@ -59,37 +54,24 @@ def build_quiz_visuals(engine, video_proc, video_path, script, timings, total_du
     if render_limit and isinstance(render_limit, (int, float)) and render_limit > 0:
         total_dur = min(total_dur, render_limit)
     
-    # --- FIX: INITIALIZE PREMIUM THEME FOR GLASS PANEL STYLING ---
-    p_theme_key = config.get('theme', 'midnight_gold') # Use config theme or default
+    # --- GET PREMIUM THEME ---
+    p_theme_key = config.get('theme', 'midnight_gold') 
     p_theme = PREMIUM_THEMES.get(p_theme_key, PREMIUM_THEMES['midnight_gold'])
-    # -------------------------------------------------------------
     
-    # 1. VISUAL LAYERING: CINEMA STACK LAYERS (Scene Synced)
-    print(f"    🧠 Building Cinema Stack Layers...")
-
-    # --- MASTER CLIP CREATION ---
+    # 1. VISUAL LAYERING: CINEMA STACK LAYERS (Unchanged)
+    
     master_scene_clip = video_proc.prepare_video_for_short(video_path, original_total_dur, script=script, width=WIDTH)
-
-    # --- LAYER 1: AMBIENCE (Background) ---
-    ambience_raw = master_scene_clip.copy()
-    ambience_raw = ambience_raw.resize(height=HEIGHT)
-    ambience_raw = ambience_raw.crop(x1=(ambience_raw.w - WIDTH) // 2, width=WIDTH, height=HEIGHT)
-    
+    ambience_raw = master_scene_clip.copy(); ambience_raw = ambience_raw.resize(height=HEIGHT); ambience_raw = ambience_raw.crop(x1=(ambience_raw.w - WIDTH) // 2, width=WIDTH, height=HEIGHT)
     bg = engine.create_background(config.get('theme'), original_total_dur, video_clip=ambience_raw)
     clips = [bg]
 
-    # --- LAYER 2: THE STAGE (Synchronized Content View) ---
-    STAGE_W = 1000
-    
-    # FIX: Use the scene-cut master clip copy instead of loading the raw file. 
-    # This guarantees scene sync. 
-    stage_video = master_scene_clip.copy() 
-    
-    # We apply the sizing for the Stage frame to the synchronized clip
-    stage_video = stage_video.resize(width=STAGE_W) 
-    
+    STAGE_W = 1000; STAGE_Y = 400 
+    stage_raw = VideoFileClip(video_path)
+    if stage_raw.duration < original_total_dur: stage_raw = stage_raw.loop(duration=original_total_dur)
+    else: stage_raw = stage_raw.subclip(0, original_total_dur)
+            
+    stage_video = stage_raw.resize(width=STAGE_W) 
     STAGE_X = (WIDTH - STAGE_W) // 2
-    STAGE_Y = 400 
     
     stage_border = ColorClip(size=(STAGE_W + 10, stage_video.h + 10), color=(255,255,255)).set_duration(original_total_dur)
     stage_border = stage_border.set_position((STAGE_X - 5, STAGE_Y - 5))
@@ -97,63 +79,46 @@ def build_quiz_visuals(engine, video_proc, video_path, script, timings, total_du
     stage_video = stage_video.set_position((STAGE_X, STAGE_Y)).set_duration(original_total_dur)
     clips.extend([stage_border, stage_video])
 
-    # 2. Get Theme Data (Legacy colors still needed for Timer/Options)
+    # 2. Get Theme Data 
     theme = engine.get_theme(config.get('theme', 'energetic_yellow'))
     
-    # 3. UI OVERLAYS (Question Glass Panel Implemented)
+    # 3. UI OVERLAYS
     print("    > Building UI Overlays...")
     
-    # A. Hook (WATCH TILL END) - UNCHANGED
+    # A. Hook (WATCH TILL END)
     CARD_START_Y = 100 
     hook_box = theme['highlight']; hook_txt = engine.get_contrast_color(hook_box)
     hook_clip = TextClip("🔥 WATCH TILL END 🔥", fontsize=45, color=hook_txt, bg_color=hook_box, font='Arial-Bold', method='label', size=(WIDTH, 110))
     hook_clip = hook_clip.set_position(('center', CARD_START_Y)).set_start(0).set_duration(2)
     clips.append(force_rgb(hook_clip))
     
-    # B. Question - IMPLEMENTING GLASS PANEL
+    # B. Question - GLASS PANEL
     print("      -> Building Question Glass Panel")
+    Q_W, Q_H = 960, 220; Q_X = (WIDTH - Q_W) // 2; Q_Y = 150 
     
-    Q_W, Q_H = 960, 220 
-    Q_X = (WIDTH - Q_W) // 2
-    Q_Y = 150 
-    
-    # 1. Create Glass Panel (Background)
-    q_panel_img = create_glass_panel(
-        Q_W, Q_H, 
-        color=p_theme['glass_fill'], 
-        border_color=p_theme['glass_border']
-    )
-    
-    # FIX: Apply force_rgb to the ImageClip output 
+    q_panel_img = create_glass_panel(Q_W, Q_H, color=p_theme['glass_fill'], border_color=p_theme['glass_border'])
     q_panel_clip = force_rgb(q_panel_img)
-    
     q_panel_clip = q_panel_clip.set_position((Q_X, Q_Y)).set_start(timings['t_q']).set_duration(original_total_dur - timings['t_q'])
-    clips.append(q_panel_clip) # Add Panel first
+    clips.append(q_panel_clip) 
     
-    # 2. Create Text (Foreground)
     QUESTION_Y = CARD_START_Y + 130
-    q_clip = engine.create_text_clip(
-        script['question_visual'], 
-        fontsize=55, 
-        color=p_theme['text_main'], 
-        bold=True, 
-        wrap_width=25, 
-        align='center',
-        bg_color=None # Removed solid background
-    )
-    # Position text relative to the panel center
+    q_clip = engine.create_text_clip(script['question_visual'], fontsize=55, color=p_theme['text_main'], bold=True, wrap_width=25, align='center', bg_color=None)
     q_clip = q_clip.set_position(('center', Q_Y + 40)).set_start(timings['t_q']).set_duration(original_total_dur - timings['t_q'])
-    clips.append(force_rgb(q_clip)) # Add Text second
+    clips.append(force_rgb(q_clip)) 
     
-    # C. Options - UNCHANGED (Legacy Layout)
+    # C. Options - IMPLEMENTING SLIDE-IN ANIMATION WITH EASING
+    print("      -> Implementing Options Slide-In (Fixing Lag)")
+    # --- ANIMATION CONSTANTS (REFINED VALUES) ---
+    ANIM_DURATION = 0.35  # Polished, resolved entry
+    STAGGER_DELAY = 0.07  # 70ms delay between options (Kinetic Polish)
+    TRAVEL_DISTANCE = 400 # Starting distance (more visible movement)
+    
     OPT_START_Y = STAGE_Y + stage_video.h + 50 
-    GAP = 110
-    opt_bg = theme['bg_color']
+    OPT_W, OPT_H = 960, 130 
+    OPT_X = (WIDTH - OPT_W) // 2
+    GAP = 145 
     
-    if isinstance(opt_bg, str):
-         if opt_bg.startswith('#'):
-            opt_bg = opt_bg.lstrip('#')
-            opt_bg = tuple(int(opt_bg[i:i+2], 16) for i in (0, 2, 4))
+    opt_panel_img = create_glass_panel(OPT_W, OPT_H, color=p_theme['glass_fill'], border_color=p_theme['glass_border'])
     
     options = [
         (f"A) {script['opt_a_visual']}", timings['t_a']), 
@@ -163,14 +128,42 @@ def build_quiz_visuals(engine, video_proc, video_path, script, timings, total_du
     ]
     
     for i, (txt, t) in enumerate(options):
-        # Keeps legacy text clip with solid color background
-        o_clip = engine.create_text_clip(txt, fontsize=45, color='white', bg_color=opt_bg, wrap_width=30, align='West')
-        o_clip = o_clip.set_position(('center', OPT_START_Y + GAP * i)).set_start(t).set_duration(original_total_dur - t)
+        current_y = OPT_START_Y + (i * GAP)
+        
+        # Calculate the staggered start time for THIS option
+        t_staggered_start = t + (i * STAGGER_DELAY)
+        
+        # 1. DEFINE MOTION FUNCTION (Using explicit 0s start time for motion progress)
+        slide_in = make_motion_func(
+            # Use the refined travel distance
+            start_pos=(OPT_X + TRAVEL_DISTANCE, current_y), 
+            end_pos=(OPT_X, current_y),        
+            # Use the absolute time for external tracking
+            start_time=0,                  
+            duration=ANIM_DURATION,           
+            easing_func=ease_out_back 
+        )
+        
+        # 2. Panel Clip (Apply Motion)
+        o_panel_clip = force_rgb(opt_panel_img.copy())
+        # Note: set_start uses t_staggered_start, which is correct.
+        o_panel_clip = o_panel_clip.set_position(slide_in).set_start(t_staggered_start).set_duration(original_total_dur - t_staggered_start)
+        clips.append(o_panel_clip)
+        
+        # 3. Text Clip (Apply Motion + Offset)
+        o_clip = engine.create_text_clip(txt, fontsize=50, color=p_theme['text_main'], bg_color=None, wrap_width=30, align='West')
+        
+        # Hard-Binding Fix: Apply the new, smaller X padding
+        txt_mover = lambda time, s=slide_in: (s(time)[0] + 30, s(time)[1] + 35) # X padding changed from 40 to 30
+        
+        o_clip = o_clip.set_position(txt_mover).set_start(t_staggered_start).set_duration(original_total_dur - t_staggered_start)
         clips.append(force_rgb(o_clip))
+        
+        
 
     # D. Timer (Segments + Big Number) - UNCHANGED
     THINK_TIME = 3.0
-    timer_base_y = OPT_START_Y + GAP * 4 + 30 
+    timer_base_y = OPT_START_Y + (len(options) * GAP) + 30 
     timer_bar_y = timer_base_y + 160
     
     bar_color = theme['correct']

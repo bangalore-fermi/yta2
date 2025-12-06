@@ -98,7 +98,7 @@ def run_visual_test():
             'theme': 'midnight_gold',   # <--- TESTING NEW PALETTE
             'cta_style': 'bookend',
             'class_level': 11,
-            'test_render_limit': 10  # <--- WILL RENDER ONLY 10 SECONDS
+            'test_render_limit': 25  # <--- WILL RENDER ONLY 10 SECONDS
         }
         
         output_filename = "TEST_VISUAL_QUIZ_FINAL.mp4"
