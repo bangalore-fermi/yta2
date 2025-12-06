@@ -1,0 +1,60 @@
+{
+  "SPREADSHEET_ID": "1Ql8YINlScHRxltK3CGygpjPKVgj9PaeD-KEsZR__8kc",
+  "SHEET_NAME": "Sheet1",
+  
+  "MAX_ROWS_TO_PROCESS": 3,
+  "MAX_VIDEOS_TO_SEARCH": 1000,
+  "CREDENTIALS_FILE": "config/client_secret.json",
+  "GEMINI_KEYS_FILE": "config/google_ai_api_keys.txt",
+  
+  "DEBUG_MODE": true,
+  "DELETE_TEMP_FILES": true,
+  "CHANNEL_NAME": "NCERT QuickPrep",
+
+  "SHEETS_TOKEN_FILE": "config/sheets_token.json",
+  "SHEETS_SCOPES": ["https://www.googleapis.com/auth/spreadsheets"],
+
+  "API_RETRY_ATTEMPTS": 3,
+  "API_RETRY_DELAY": 3,
+  
+  "DIRS": {
+    "DOWNLOADS_VID": "downloads/yt_vids",
+    "DOWNLOADS_PDF": "downloads/chap_pdfs",
+    "SHORTS_OUT": "shorts",
+    "TEMP": "temp"
+  },
+
+  "COLUMN_MAPPING": {
+    "COL_INDEX_CLASS": 1,
+    "COL_INDEX_PDF": 5,
+    "COL_INDEX_CHAPTER": 8,
+    "COL_INDEX_FILTER": 12,
+    "COL_INDEX_ID": 13,
+    "COL_INDEX_TOPIC": 18,
+    "COL_INDEX_VIDEO": 24,
+    "COL_INDEX_STATUS": 39,
+    "COL_INDEX_FILENAME": 43,
+    "COL_INDEX_TEMPLATE": 44,
+    "COL_INDEX_DURATION": 45,
+    "COL_INDEX_VOICE_SYSTEM": 49 
+  },
+  
+  "STATUS_TO_PROCESS": "Not Generated",
+  "STATUS_SUCCESS": "generated",
+  "STATUS_FAILURE_PREFIX": "Failed: ",
+  
+  "VIDEO_PROCESSING": {
+    "ENABLE_OCR": true,
+    "SCENE_MATCHING_MODE": "smart",
+    "FALLBACK_TO_MOTION": true
+  },
+  
+  "FILENAME_FORMAT": {
+    "CHAPTER_MAX_LENGTH": 10,
+    "TYPE_MAX_LENGTH": 5,
+    "KEYWORD_MAX_LENGTH": 8,
+    "ID_LENGTH": 4,
+    "VERSION_PREFIX": "V",
+    "TOTAL_MAX_LENGTH": 45
+  }
+}

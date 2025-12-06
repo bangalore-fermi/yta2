@@ -1,0 +1,15 @@
+{
+  "last_reset": "2025-12",
+  "accounts": {
+    "account1": {
+      "used_chars": 1000000,
+      "quota_limit": 1000000,
+      "available": 0
+    },
+    "account2": {
+      "used_chars": 1000000,
+      "quota_limit": 1000000,
+      "available": 0
+    }
+  }
+}

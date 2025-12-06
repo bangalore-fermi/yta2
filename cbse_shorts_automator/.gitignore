@@ -1,0 +1,63 @@
+# Generated content directories
+downloads/
+shorts/
+temp/
+logs/
+#data/
+
+# Confidential configuration files
+config/client_secret.json
+config/google_ai_api_keys.txt
+config/sheets_token.json
+config/google_tts_account*.json
+
+# Keep config directory structure but ignore secrets
+!config/.gitkeep
+
+# Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# Virtual environments
+.env
+.venv
+venv/
+ENV/
+env/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+*.db
+
+# Test files (optional - uncomment if you want to ignore them)
+# debug_test*.py
+# test_*.mp4
+# test_*.pdf

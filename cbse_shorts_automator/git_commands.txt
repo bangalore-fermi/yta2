@@ -1,0 +1,8 @@
+# 1. Stage all changes
+git add .
+
+# 2. Commit the staged changes with a message
+git commit -m "initial commit from new repository"
+
+# 3. Push the new commit to the remote GitHub repository
+git push

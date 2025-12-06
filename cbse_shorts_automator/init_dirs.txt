@@ -1,0 +1,18 @@
+mkdir cbse_shorts_automator
+mkdir cbse_shorts_automator/config
+mkdir cbse_shorts_automator/config/music
+mkdir cbse_shorts_automator/config/music/calm
+mkdir cbse_shorts_automator/config/music/energetic
+mkdir cbse_shorts_automator/config/music/funky
+mkdir cbse_shorts_automator/config/sfx
+mkdir cbse_shorts_automator/data
+mkdir cbse_shorts_automator/downloads/
+mkdir cbse_shorts_automator/shorts/
+mkdir cbse_shorts_automator/temp/
+mkdir cbse_shorts_automator/logs/
+
+sudo apt-get update
+sudo apt-get install imagemagick
+pip install google-cloud-texttospeech
+pip install -U openai-whisper
+sudo apt install ffmpeg

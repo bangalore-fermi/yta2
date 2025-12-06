@@ -1,0 +1,58 @@
+vm = VoiceManager()
+   
+# Generate 3 audio samples
+for i in range(3):
+    text = f"Test audio number {i+1} for usage tracking validation."
+    output = f"temp/test_audio/usage_test_{i+1}.mp3"
+    vm.generate_audio_sync(text, output)
+
+# Check usage summary
+vm.print_usage_summary()
+
+
+for seg in ans_segments:
+            sub = TextClip(
+                seg['text'], 
+                fontsize=55, 
+                color=ans_txt, 
+                bg_color=ans_bg, 
+                font='Arial-Bold', 
+                method='caption', 
+                size=(WIDTH-100, None), 
+                align='center',
+                stroke_color=stroke_col, # Readability Fix
+                stroke_width=stroke_wid
+            )
+            sub = sub.set_position(('center', OPT_START_Y + 100)).set_start(t_ans + seg['start']).set_duration(seg['duration'])
+            clips.append(force_rgb(sub))
+
+
+ # Content (Huge Font)
+        CONTENT_Y = TITLE_Y + 250
+        ans_bg_color = theme['correct']
+        ans_text_color = self.engine.get_contrast_color(ans_bg_color)
+        
+        # Readability Fix
+        stroke_col = 'black' if ans_text_color == 'white' else None
+        stroke_wid = 3 if ans_text_color == 'white' else 0
+        
+        for seg in content_segments:
+            sub_clip = TextClip(
+                seg['text'],
+                fontsize=95, # UPGRADE: Was 75
+                color=ans_text_color,
+                bg_color=ans_bg_color, 
+                font='Arial-Bold',
+                method='caption',
+                size=(WIDTH-100, None),
+                align='center',
+                stroke_color=stroke_col,
+                stroke_width=stroke_wid
+            )
+            if sub_clip.img is not None and sub_clip.img.ndim == 2:
+                from moviepy.editor import vfx
+                sub_clip = sub_clip.fx(vfx.to_RGB)
+                
+            abs_start = t_content + seg['start']
+            sub_clip = sub_clip.set_position(('center', CONTENT_Y)).set_start(abs_start).set_duration(seg['duration'])
+            clips.append(sub_clip)            

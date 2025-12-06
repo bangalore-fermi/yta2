@@ -1,0 +1,14 @@
+google-api-python-client
+google-auth-oauthlib
+google-auth-httplib2
+google-generativeai
+yt-dlp
+moviepy==1.0.3
+edge-tts
+pymupdf
+opencv-python-headless
+requests
+numpy
+google-cloud-texttospeech
+openai-whisper
+install ffmpeg
