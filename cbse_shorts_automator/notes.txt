@@ -314,9 +314,8 @@ timer_label_pulse_freq=4
 31. can you recheck and explain the shine sweep logic? is it doing what you want it to do?
 
 32. everywhere we are showing sharp rectangles. is it not possible to show some of them in rounded rectangles?
-33. are there no built in libraries to addgradient effects instead of we creating it ourselves?
-34. the fade of the wrong answers and highlight of the correct answer should be retained till gthe end of the video
-35.the logic for highlighting correct answer i liked and implemented and working is :
+33. are there no built in libraries to add gradient effects instead of we creating it ourselves?
+34.the logic for highlighting correct answer which i liked and implemented and working is :
  # Green glow expansion around correct option
         glow_width = WIDTH - res_scale(100)
         glow_height = res_scale(100)
@@ -357,5 +356,62 @@ timer_label_pulse_freq=4
         clips.extend(wrong_option_fades)
 
 
-36. already the total screen is totally dark. in that, background for the question card and option card, everything is also dark. isntit? will this be good? i dont know.
+35. i like this implementation for timer label and i am keeping it:
 
+        timer_label_pulse_freq=4
+
+        # Create flashing effect (2 states alternating)
+        for i in range(int(THINK_TIME * timer_label_pulse_freq)):  # Flash four times per second
+            opacity = 1.0 if i % 2 == 0 else 0.5  # Alternate full/half
+            
+            label = TextClip(
+                timer_label_text,
+                fontsize=res_scale(62),
+                color='#FFFF00',  # Bright yellow
+                font='Impact',  # Bold, attention-grabbing font
+                stroke_color='black',
+                stroke_width=res_scale(2),
+                method='label'
+            ).set_opacity(opacity)
+            
+            label = label.set_position(('center', timer_label_y))
+            label = label.set_start(t_think + (i / timer_label_pulse_freq)).set_duration(1/timer_label_pulse_freq)
+            clips.append(label)
+36.we are also yet to implement  the visual design and scaling for the outro
+37. what next?
+
+
+Again, dont jump into coding. first explain me the implications and then i will tell you what to do.
+
+there were few issues.  i have resolved them. for eg: 
+                # Entrance animation: elastic scale-up with rotation
+                def logo_animation(t):
+                    if t < 0.8:  # 0.8s entrance
+                        progress = t / 0.8
+                        # Elastic easing with overshoot
+                        if progress < 0.5:
+                            MIN_SCALE = 0.01
+                            scale = MIN_SCALE + (1.0 - MIN_SCALE) * (progress * 2)
+                        else:
+                            # Overshoot and settle
+
+38. the outro text are not in proper contrast with the gradient background. text color for the outro should be correctly selected based on the gradient background
+39. bottom subscribe button in the outro is not within the safe zone. what do you think?
+40. the emojis in the USP messages are not visible in the video
+
+41. Emoji did not render for the youtube controls even with Noto Color Emoji font
+42. can you. provide additions in the testscript for testing the outro separately, like you gave for pip and backdrop
+
+Question 1 : 0->90->180->270->0 is one cycle. 0->90->180 is 1/2 cycle. so total 1.5 cycles or 6 quarter cycles.what am i missing here?. not 1.75 cycle. 
+
+Question 2: Inverted
+
+Phase 3A: horizontal motion end position is unspecified. horizontal and vertical velocity is same as it was for Phase 1 and 2. Phase 3A ends when top of the pip hits the top limit or 15 px from the 0deg top position.
+
+Q6: borders and controls candisppear during enlargement
+
+Q7: each phase 6.667 seconds is acceptable
+
+Q5: transition can be instant cut for now
+
+Q4: we can check with linear. if everything works well, we can change it to 'eased'

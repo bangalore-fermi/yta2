@@ -25,8 +25,8 @@ class TestMode:
         'name': 'Visual Development',
         'include_audio': False,
         'resolution': (540, 960),
-        'segment_duration': 5,
-        'fps': 15,
+        'segment_duration': 30,
+        'fps': 10,
         'use_mock_timings': True,
         'particle_count': 10,
         'render_preset': 'ultrafast',
@@ -407,6 +407,60 @@ def test_cta_banner(config, logger):
     logger.section_end("Testing Split CTA Banner")
     return output_path
 
+def test_outro(config, logger, theme_str):
+    """Test outro animation and styling"""
+    logger.section_start("Testing Outro")
+    
+    theme = ALL_THEMES[theme_str]
+    
+    # Set resolution for this test
+    from visual_effects_quiz import set_resolution
+    set_resolution(config['resolution'][0], config['resolution'][1], config['fps'])
+    
+    # Import shorts engine
+    from shorts_engine import ShortsEngine
+    
+    engine = ShortsEngine()
+    
+    # Create outro with test theme
+    outro_duration = 4.0
+    
+    outro = engine.create_outro_v2(
+        duration=outro_duration,
+        theme=theme,
+        usp_message=None,  # Random message
+        cta_text="SUBSCRIBE FOR MORE!"
+    )
+    
+    # Create simple backdrop for context
+    from visual_effects_quiz import QuizVisualEffects
+    vfx = QuizVisualEffects(
+        theme=theme,
+        config=config,
+        timing_data=None,
+        logger=logger
+    )
+    
+    backdrop = vfx.create_particle_backdrop(outro_duration)
+    
+    # Composite backdrop + outro
+    final = CompositeVideoClip([backdrop, outro], size=config['resolution'])
+    
+    output_path = f'shorts/TEST_OUTRO_{theme_str.upper()}.mp4'
+    os.makedirs('shorts', exist_ok=True)
+    
+    logger.log(f"Rendering to {output_path}")
+    final.write_videofile(
+        output_path,
+        fps=config['fps'],
+        codec='libx264',
+        preset=config['render_preset'],
+        audio=False,
+        logger=None if logger.level == LogLevel.SILENT else 'bar'
+    )
+    
+    logger.section_end("Testing Outro")
+    return output_path
 
 def test_timing_markers(config, logger):
     """Test timing marker visualization"""
@@ -538,10 +592,10 @@ Examples:
         default='visual-dev',
         help='Test mode preset'
     )
-    
+
     parser.add_argument(
         '--segment',
-        choices=['backdrop', 'pip', 'markers', 'cta', 'typewriter', 'options', 'timer', 'full'],
+        choices=['backdrop', 'pip', 'markers', 'cta', 'typewriter', 'options', 'timer', 'outro', 'full'],
         default='backdrop',
         help='Which segment to test'
     )
@@ -641,7 +695,7 @@ Examples:
             output = test_backdrop(config, logger, args.theme)
         elif args.segment == 'pip':
             set_resolution(config['resolution'][0], config['resolution'][1])
-            PIP_HEIGHT = res_scale(400)  # Will scale based on resolution
+            PIP_HEIGHT = res_scale(225)  # Will scale based on resolution
             config['pip_size'] = (int(PIP_HEIGHT * 16 / 9), PIP_HEIGHT)
             output = test_pip(config, logger, args.video)
         elif args.segment == 'markers':
@@ -654,6 +708,8 @@ Examples:
             output = test_options(config, logger)
         elif args.segment == 'timer':
             output = test_timer(config, logger)
+        elif args.segment == 'outro':
+            output = test_outro(config, logger, args.theme)
         elif args.segment == 'full':
             set_resolution(config['resolution'][0], config['resolution'][1])
             PIP_HEIGHT = res_scale(495)  # Will scale based on resolution

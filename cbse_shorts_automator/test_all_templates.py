@@ -142,8 +142,8 @@ def run_full_test():
                 #         ('vibrant_purple' if template_type == 'fact' else 'fresh_green'),
                 #'theme': theme,
                 'cta_style': 'bookend',
-                'width': 270,
-                'height': 480,
+                'width': int(1080 / 2),
+                'height': int(1920 / 2),
                 'fps': 10, 
                 'class_level': 11
             }

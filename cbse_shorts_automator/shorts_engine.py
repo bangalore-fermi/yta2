@@ -159,6 +159,288 @@ class ShortsEngine:
 
         return CompositeVideoClip(clips, size=(WIDTH, HEIGHT)).crossfadein(0.5)
 
+    def _get_contrast_text_color(self, bg_color):
+        """
+        Calculate optimal text color based on background luminance.
+        Returns 'white' or 'black' for maximum contrast.
+        """
+        # Handle different color formats
+        if isinstance(bg_color, str):
+            if bg_color.startswith('#'):
+                hex_color = bg_color.lstrip('#')
+                r, g, b = tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+            else:
+                return 'white'  # Fallback
+        elif isinstance(bg_color, (tuple, list)):
+            r, g, b = bg_color[0], bg_color[1], bg_color[2]
+        else:
+            return 'white'  # Fallback
+        
+        # Calculate relative luminance (human eye perception)
+        luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+        
+        # Return contrasting color
+        return 'black' if luminance > 0.5 else 'white'    
+
+    def create_outro_v2(self, duration, theme, usp_message=None, cta_text="SUBSCRIBE FOR MORE!"):
+        """
+        Creates themed, animated outro with USP messaging.
+        
+        Args:
+            duration: Outro duration (typically 4 seconds)
+            theme: Theme dictionary with colors
+            usp_message: Tuple of (line1, line2) for USP text, or None for random
+            cta_text: Call-to-action text
+            
+        Returns:
+            CompositeVideoClip with animated outro
+        """
+        from visual_effects_quiz import res_scale, WIDTH, HEIGHT
+        from usp_content_variations import USPContent
+        import math
+        
+        clips = []
+        
+        # ============================================================
+        # BACKGROUND - Theme colored with subtle gradient
+        # ============================================================
+        
+        # Main background (theme's bg_color)
+        bg_color = theme.get('bg_color', (15, 23, 42))
+        bg = ColorClip(size=(WIDTH, HEIGHT), color=bg_color, duration=duration)
+        clips.append(bg)
+        
+        # Radial gradient overlay (theme's highlight color)
+        highlight_color = theme.get('highlight', '#FACC15')
+        if isinstance(highlight_color, str) and highlight_color.startswith('#'):
+            hex_color = highlight_color.lstrip('#')
+            highlight_rgb = tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+        else:
+            highlight_rgb = highlight_color
+        
+        # Create 3-layer radial gradient (centered)
+
+        num_grd_layers=1
+            #for i in range(num_grd_layers):  # 3 gradient layers
+                #radius = res_scale(50) + (i * res_scale())v
+        for i in range(num_grd_layers):
+            radius = res_scale(30) + (i * (HEIGHT//2//num_grd_layers))
+            opacity = 0.12 - (i//num_grd_layers * 0.03)
+            
+            gradient_circle = ColorClip(
+                size=(radius*2, radius*2),
+                color=highlight_rgb
+            ).set_opacity(opacity)
+            
+            gradient_circle = gradient_circle.set_position(
+                (WIDTH//2 - radius, HEIGHT//2 - radius)
+            ).set_duration(duration)
+            
+            clips.append(gradient_circle)
+        
+        # ============================================================
+        # LOGO - Elastic entrance animation
+        # ============================================================
+        
+        center_y = HEIGHT // 2
+        
+        if os.path.exists(self.logo_path):
+            try:
+                from moviepy.editor import ImageClip
+                
+                logo = ImageClip(self.logo_path).set_duration(duration)
+                
+                # Resize logo to reasonable size
+                target_logo_height = res_scale(450)
+                print(f"logo target height={target_logo_height}, actual height = {logo.h}")
+                if logo.h > target_logo_height:
+                    logo = logo.resize(height=target_logo_height)
+                
+                # Entrance animation: elastic scale-up with rotation
+                def logo_animation(t):
+                    if t < 0.8:  # 0.8s entrance
+                        progress = t / 0.8
+                        # Elastic easing with overshoot
+                        if progress < 0.5:
+                            MIN_SCALE = 0.01
+                            scale = MIN_SCALE + (1.0 - MIN_SCALE) * (progress * 2)
+                        else:
+                            # Overshoot and settle
+                            overshoot = math.sin((progress - 0.5) * 2 * math.pi) * 0.15
+                            scale = 1.0 + overshoot
+                        
+                        # Slight rotation during entrance
+                        rotation = (1 - progress) * -15  # -15° to 0°
+                        
+                        return scale
+                    else:
+                        # Gentle pulse after entrance
+                        pulse_t = (t - 0.8) / (duration - 0.8)
+                        scale = 1.0 + 0.03 * math.sin(pulse_t * 2 * math.pi)
+                        return scale
+                print("before logo animation")
+                logo = logo.resize(logo_animation)
+                
+                # Position above center
+                logo = logo.set_position(('center', HEIGHT//4))
+                clips.append(logo)
+                
+                logo_present = True
+                
+            except Exception as e:
+                print(f"⚠️ Logo loading failed: {e}")
+                logo_present = False
+        else:
+            logo_present = False
+        
+        # ============================================================
+        # CHANNEL NAME - Fade in with slight rise
+        # ============================================================
+        
+        try:
+            from moviepy.editor import TextClip
+            
+            channel_name_y = center_y + res_scale(50) if logo_present else center_y - res_scale(80)
+            # Calculate contrast color for theme background
+            text_color = self._get_contrast_text_color(bg_color)
+            stroke_color = 'black' if text_color == 'white' else 'white'
+
+            name_clip = TextClip(
+                self.channel_name.upper(),
+                fontsize=res_scale(70),
+                color=text_color,  # ✅ Adaptive
+                font='Arial-Bold',
+                stroke_color=stroke_color,  # ✅ Contrasting stroke
+                stroke_width=res_scale(3),
+                method='label'
+            )
+            
+            # Fade in + rise animation
+            def name_animation(t):
+                if t < 1.0:
+                    progress = t / 1.0
+                    offset_y = (1 - progress) * res_scale(30)  # Rise 30px
+                    return ('center', channel_name_y + offset_y)
+                return ('center', channel_name_y)
+            
+            name_clip = name_clip.set_position(name_animation)
+            name_clip = name_clip.set_start(0.5).set_duration(duration - 0.5)
+            name_clip = name_clip.crossfadein(0.5)
+            
+            clips.append(name_clip)
+            
+        except Exception as e:
+            print(f"⚠️ Channel name creation failed: {e}")
+        
+        # ============================================================
+        # USP MESSAGING - Two-line tagline
+        # ============================================================
+        
+        if usp_message is None:
+            usp_message = USPContent.get_random_outro()
+        
+        line1, line2 = usp_message
+        
+        try:
+            # Line 1: Main USP (larger, highlight color)
+            usp_y_base = center_y + res_scale(160) if logo_present else center_y + res_scale(40)
+            
+            usp_line1 = TextClip(
+                line1,
+                fontsize=res_scale(52),
+                color=highlight_color,
+                font='Arial-Bold',
+                stroke_color='black',
+                stroke_width=res_scale(1),
+                method='label'
+            )
+            
+            usp_line1 = usp_line1.set_position(('center', usp_y_base))
+            usp_line1 = usp_line1.set_start(1.0).set_duration(duration - 1.0)
+            usp_line1 = usp_line1.crossfadein(0.4)
+            
+            clips.append(usp_line1)
+            
+            usp_line2 = TextClip(
+                line2,
+                fontsize=res_scale(42),
+                color=text_color,  # ✅ Same as channel name
+                font='Arial',
+                stroke_color=stroke_color,
+                stroke_width=res_scale(1),
+                method='label'
+            )
+            
+            usp_line2 = usp_line2.set_position(('center', usp_y_base + res_scale(70)))
+            usp_line2 = usp_line2.set_start(1.5).set_duration(duration - 1.5)
+            usp_line2 = usp_line2.crossfadein(0.4)
+            
+            clips.append(usp_line2)
+            
+        except Exception as e:
+            print(f"⚠️ USP text creation failed: {e}")
+        
+        # ============================================================
+        # SUBSCRIBE BUTTON - Pulsing call-to-action
+        # ============================================================
+        
+        try:
+            button_y = HEIGHT - res_scale(500)
+            button_width = res_scale(600)
+            button_height = res_scale(500)
+            
+            # Button background (highlight color)
+            button_bg = ColorClip(
+                size=(button_width, button_height),
+                color=highlight_rgb
+            ).set_opacity(0.95)
+            
+            # Pulsing animation
+            def button_pulse(t):
+                if t < 2.0:
+                    return ('center', button_y)
+                else:
+                    pulse_t = (t - 2.0) / 1.5
+                    scale = 1.0 + 0.08 * abs(math.sin(pulse_t * 3 * math.pi))
+                    offset_y = (1 - scale) * button_height / 2
+                    return ('center', button_y + offset_y)
+            
+            button_bg = button_bg.resize(lambda t: 1.0 + 0.08 * abs(math.sin(max(0, t - 2.0) / 1.5 * 3 * math.pi)) if t > 2.0 else 1.0)
+            button_bg = button_bg.set_position(button_pulse)
+            button_bg = button_bg.set_start(2.0).set_duration(duration - 2.0)
+            button_bg = button_bg.crossfadein(0.3)
+            
+            clips.append(button_bg)
+            
+            # Button text
+            button_text = TextClip(
+                "🔔 " + cta_text,
+                fontsize=res_scale(48),
+                color='white',
+                font='Arial-Bold',
+                method='label'
+            )
+            
+            button_text = button_text.set_position(('center', button_y - res_scale(100)))
+            button_text = button_text.set_start(2.0).set_duration(duration - 2.0)
+            button_text = button_text.crossfadein(0.3)
+            
+            clips.append(button_text)
+            
+        except Exception as e:
+            print(f"⚠️ Button creation failed: {e}")
+        
+        # ============================================================
+        # COMPOSITE & RETURN
+        # ============================================================
+        
+        outro_clip = CompositeVideoClip(clips, size=(WIDTH, HEIGHT))
+        
+        # Add subtle fade-in at start
+        outro_clip = outro_clip.crossfadein(0.5)
+        
+        return outro_clip
+    
     def add_background_music(self, voice_track, total_duration, theme_name='energetic_yellow'):
         mood = self.get_theme(theme_name).get('music_mood', 'energetic')
         search_path = os.path.join(self.music_dir, mood, "*.mp3")

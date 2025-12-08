@@ -163,9 +163,9 @@ class QuizVisualEffects:
         # Create gradient overlay (subtle)
         try:
             highlight_color = self._parse_color(self.theme['highlight'])
-            num_grd_layers=10
+            num_grd_layers=1
             for i in range(num_grd_layers):  # 3 gradient layers
-                radius = res_scale(50) + (i * res_scale(HEIGHT//num_grd_layers))
+                radius = res_scale(50) + (i * res_scale(HEIGHT//2//num_grd_layers))
                 opacity = 0.05 - (i//num_grd_layers * 0.015)
                 
                 gradient_circle = ColorClip(
@@ -302,19 +302,101 @@ class QuizVisualEffects:
                 self.logger.data("Journey", "RIGHT → LEFT")
             
             y_base = res_scale(150)  # Safe zone top
-            
-            # Wavy horizontal journey
+            # Complex 4-phase journey with final enlargement
             def wavy_journey(t):
-                # Horizontal progress (0 to 1 over full duration)
                 progress = min(t / duration, 1.0)
-                current_x = start_x + (end_x - start_x) * progress
                 
-                # Vertical wave (2 complete cycles over journey)
-                wave_progress = (t / duration) * 2 * math.pi * 2
-                wave_offset = math.sin(wave_progress) * res_scale(15)
+                # Phase timings
+                PHASE_1_END = 0.30  # 30% - reach opposite edge
+                PHASE_2_END = 0.55  # 55% - return to start
+                PHASE_3_END = 0.85  # 85% - reach center
+                # PHASE_4 = 0.85-1.0 (15%) - enlargement
                 
-                return (current_x, y_base + wave_offset)
-            
+                center_x = (WIDTH - self.pip_size[0]) / 2
+                
+                # ========================================
+                # HORIZONTAL POSITION CALCULATION
+                # ========================================
+                
+                if progress < PHASE_1_END:
+                    # Phase 1: Start → Opposite
+                    phase_progress = progress / PHASE_1_END
+                    current_x = start_x + (end_x - start_x) * phase_progress
+                    
+                elif progress < PHASE_2_END:
+                    # Phase 2: Opposite → Start
+                    phase_progress = (progress - PHASE_1_END) / (PHASE_2_END - PHASE_1_END)
+                    current_x = end_x + (start_x - end_x) * phase_progress
+                    
+                elif progress < PHASE_3_END:
+                    # Phase 3: Start → Center
+                    phase_progress = (progress - PHASE_2_END) / (PHASE_3_END - PHASE_2_END)
+                    current_x = start_x + (center_x - start_x) * phase_progress
+                    
+                else:
+                    # Phase 4: Hold at center (for enlargement)
+                    current_x = center_x
+                
+                # ========================================
+                # VERTICAL POSITION CALCULATION
+                # ========================================
+                
+                if progress < PHASE_3_END:
+                    # Phases 1-3: Wavy motion (6 complete cycles)
+                    wave_progress = progress * 6 * 2 * math.pi
+                    wave_offset = math.sin(wave_progress) * res_scale(15)
+                    current_y = y_base + wave_offset
+                else:
+                    # Phase 4: Settle to vertical center as it enlarges
+                    phase_progress = (progress - PHASE_3_END) / (1.0 - PHASE_3_END)
+                    
+                    # Gradually move to vertical center
+                    target_y = (HEIGHT - self.pip_size[1]) / 2 *0 + y_base
+                    current_y = y_base + (target_y - y_base) * phase_progress
+                
+                return (current_x, current_y)
+            # Scale function for enlargement in Phase 4
+            def pip_scale(t):
+                progress = min(t / duration, 1.0)
+                                
+                # Skip enlargement if PIP already large
+                if self.pip_size[0] > res_scale(600):
+                    return 1.0  # No scaling needed
+                PHASE_3_END = 0.85
+                
+                if progress < PHASE_3_END:
+                    return 1.0  # Normal size during phases 1-3
+                else:
+                    # Phase 4: Enlarge
+                    phase_progress = (progress - PHASE_3_END) / (1.0 - PHASE_3_END)
+                    
+                    # Calculate target scale to fill width
+                    target_width = WIDTH - res_scale(100)  # 50px margin each side
+                    target_scale = target_width / self.pip_size[0]
+                    
+                    # Cap maximum scale (prevent going off-screen top)
+                    max_scale = 2.8  # Reasonable limit
+                    target_scale = min(target_scale, max_scale)
+                    
+                    # Smooth easing (ease-out)
+                    eased_progress = 1 - pow(1 - phase_progress, 3)  # Cubic ease-out
+                    
+                    current_scale = 1.0 + (target_scale - 1.0) * eased_progress
+                    return current_scale
+
+                # Cache scale values (calculate once, reuse)
+            scale_cache = {}
+
+            def pip_scale_cached(t):
+                frame = int(t * FPS)  # Assuming 24 fps
+                if frame not in scale_cache:
+                    scale_cache[frame] = pip_scale(t)
+                return scale_cache[frame]
+
+            pip = pip.resize(pip_scale_cached)
+
+            # Apply scale to PIP
+            #pip = pip.resize(pip_scale)
             pip = pip.set_position(wavy_journey)
             
             self.logger.log("Wavy journey animation applied", LogLevel.DEBUG)
@@ -371,6 +453,19 @@ class QuizVisualEffects:
             
             right_border = right_border.set_position(right_border_pos).set_duration(duration)
             
+
+            # Top border - only visible when not enlarged
+            def top_border_visibility(t):
+                progress = min(t / duration, 1.0)
+                return 0.4 if progress < 0.85 else 0  # Fade out during phase 4
+
+            #top_border = top_border.set_opacity(top_border_visibility)
+
+            # Apply same to all borders (bottom, left, right)
+            #bottom_border = bottom_border.set_opacity(top_border_visibility)
+            #left_border = left_border.set_opacity(top_border_visibility)
+            #right_border = right_border.set_opacity(top_border_visibility)
+
             # Subtle glow (pulsing)
             # Subtle glow (pulsing) - FIXED
             glow_size = (self.pip_size[0] + res_scale(80), self.pip_size[1] + res_scale(80))
@@ -391,9 +486,30 @@ class QuizVisualEffects:
             glow = glow.set_position(glow_pos)
             
             # Composite: Glow -> Borders -> PIP
-            pip_with_effects = CompositeVideoClip([
+            pip_base = CompositeVideoClip([
                 glow, top_border, bottom_border, left_border, right_border, pip
             ], size=(WIDTH, HEIGHT))
+
+            # ADD YOUTUBE CONTROLS OVERLAY
+            youtube_controls = self.create_youtube_overlay(
+                pip_width=self.pip_size[0],
+                pip_height=self.pip_size[1],
+                pip_position_func=wavy_journey,
+                pip_scale_func=pip_scale_cached,  # NEW: Pass scale function
+                duration=duration,
+                progress_percent=42,
+                timestamp="2:34 / 7:12"
+            )
+
+            if youtube_controls:
+                pip_with_effects = CompositeVideoClip([
+                    pip_base, youtube_controls
+                ], size=(WIDTH, HEIGHT))
+            else:
+                pip_with_effects = pip_base
+
+            self.logger.section_end("PIP Source Video")
+            return pip_with_effects
             
             self.logger.section_end("PIP Source Video")
             return pip_with_effects
@@ -401,7 +517,244 @@ class QuizVisualEffects:
         except Exception as e:
             self.logger.error(f"PIP creation failed: {e}")
             return source_video_clip.set_duration(duration)
-    
+
+    def create_youtube_overlay(self, pip_width, pip_height, pip_position_func, 
+                            pip_scale_func=None, duration=None, 
+                            progress_percent=40, timestamp="2:34 / 7:12"):
+        """
+        Creates YouTube-style player controls overlay for PIP.
+        
+        Args:
+            pip_width: Width of PIP video
+            pip_height: Height of PIP video
+            pip_position_func: Function that returns (x, y) for PIP at time t
+            duration: Video duration
+            progress_percent: Progress bar fill percentage (0-100)
+            timestamp: Time display text (e.g., "2:34 / 7:12")
+            
+        Returns:
+            CompositeVideoClip with control overlays
+        """
+        import random
+        progress_percent = random.randint(35, 55)  # 35-55% progress
+        self.logger.section_start("YouTube Player Overlay")
+        self.logger.data("Progress", f"{progress_percent}%")
+        
+        clips = []
+        
+        # ============================================================
+        # CONTROL BAR BACKGROUND (dark gray bar at bottom)
+        # ============================================================
+        
+        control_bar_height = res_scale(40)
+        control_bg = ColorClip(
+            size=(pip_width, control_bar_height),
+            color=(24, 24, 24)  # YouTube dark background
+        ).set_opacity(0.9)
+        
+        def control_bg_pos(t):
+            pip_x, pip_y = pip_position_func(t)
+            scale = pip_scale_func(t) if pip_scale_func else 1.0
+            
+            scaled_height = pip_height * scale
+            scaled_width = pip_width * scale
+            
+            # Offset for centered scaling
+            x_offset = (scaled_width - pip_width) / 2
+            y_offset = (scaled_height - pip_height) / 2
+            
+            return (pip_x - x_offset, pip_y + scaled_height - control_bar_height - y_offset)
+
+        # Apply same pattern to ALL position functions in youtube controls
+        control_bg = control_bg.set_position(control_bg_pos).set_duration(duration)
+        clips.append(control_bg)
+        
+        # ============================================================
+        # PROGRESS BAR
+        # ============================================================
+        
+        progress_bar_height = res_scale(4)
+        progress_bar_y_offset = res_scale(10)  # From top of control bar
+        
+        # Background track (unfilled)
+        progress_bg = ColorClip(
+            size=(pip_width - res_scale(20), progress_bar_height),
+            color=(77, 77, 77)  # Medium gray
+        ).set_opacity(0.8)
+        
+        def progress_bg_pos(t):
+            pip_x, pip_y = pip_position_func(t)
+            return (pip_x + res_scale(10), 
+                    pip_y + pip_height - control_bar_height + progress_bar_y_offset)
+        
+        progress_bg = progress_bg.set_position(progress_bg_pos).set_duration(duration)
+        clips.append(progress_bg)
+        
+        # Filled portion (red)
+        filled_width = int((pip_width - res_scale(20)) * (progress_percent / 100))
+        progress_fill = ColorClip(
+            size=(filled_width, progress_bar_height),
+            color=(255, 0, 0)  # YouTube red
+        ).set_opacity(1.0)
+        
+        def progress_fill_pos(t):
+            pip_x, pip_y = pip_position_func(t)
+            return (pip_x + res_scale(10), 
+                    pip_y + pip_height - control_bar_height + progress_bar_y_offset)
+        
+        progress_fill = progress_fill.set_position(progress_fill_pos).set_duration(duration)
+        clips.append(progress_fill)
+        
+        # ============================================================
+        # PLAYER BUTTONS (Previous, Play/Pause, Next)
+        # ============================================================
+        
+        button_size = res_scale(20)
+        button_y_offset = res_scale(18)  # From top of control bar
+        
+        # Button positions (left-aligned)
+        button_spacing = res_scale(35)
+        button_start_x = res_scale(15)
+        
+        # Previous button (⏮)
+        try:
+            prev_btn = TextClip(
+                "◄",
+                fontsize=res_scale(18),
+                color='white',
+                font='Noto Color Emoji',
+                method='label'
+            )
+            
+            def prev_btn_pos(t):
+                pip_x, pip_y = pip_position_func(t)
+                return (pip_x + button_start_x, 
+                        pip_y + pip_height - control_bar_height + button_y_offset)
+            
+            prev_btn = prev_btn.set_position(prev_btn_pos).set_duration(duration)
+            clips.append(prev_btn)
+        except:
+            self.logger.warning("Previous button creation failed (emoji font issue)")
+        
+        # Play/Pause button (⏸) - center of 3 buttons
+        try:
+            play_btn = TextClip(
+                "| |",
+                fontsize=res_scale(18),
+                color='white',
+                font='Noto Color Emoji',
+                method='label'
+            )
+            
+            def play_btn_pos(t):
+                pip_x, pip_y = pip_position_func(t)
+                return (pip_x + button_start_x + button_spacing, 
+                        pip_y + pip_height - control_bar_height + button_y_offset)
+            
+            play_btn = play_btn.set_position(play_btn_pos).set_duration(duration)
+            clips.append(play_btn)
+        except:
+            self.logger.warning("Play button creation failed (emoji font issue)")
+        
+        # Next button (⏭)
+        try:
+            next_btn = TextClip(
+                "►►",
+                fontsize=res_scale(18),
+                color='white',
+                font='Noto Color Emoji',
+                method='label'
+            )
+            
+            def next_btn_pos(t):
+                pip_x, pip_y = pip_position_func(t)
+                return (pip_x + button_start_x + (button_spacing * 1), 
+                        pip_y + pip_height - control_bar_height + button_y_offset)
+            
+            next_btn = next_btn.set_position(next_btn_pos).set_duration(duration)
+            clips.append(next_btn)
+        except:
+            self.logger.warning("Next button creation failed (emoji font issue)")
+
+        # Volume icon (right side of control bar)
+        try:
+            volume_icon = TextClip(
+                "🔊",  # Or "VOL"
+                fontsize=res_scale(14),
+                color='white',
+                font='Noto Color Emoji',
+                method='label'
+            )
+            
+            def volume_pos(t):
+                pip_x, pip_y = pip_position_func(t)
+                return (pip_x + pip_width - res_scale(100), 
+                        pip_y + pip_height - control_bar_height + res_scale(20))
+            
+            volume_icon = volume_icon.set_position(volume_pos).set_duration(duration)
+            clips.append(volume_icon)
+        except:
+            pass    
+        
+        # ============================================================
+        # TIMESTAMP (right-aligned)
+        # ============================================================
+        
+        try:
+            timestamp_clip = TextClip(
+                timestamp,
+                fontsize=res_scale(14),
+                color='white',
+                font='Arial',
+                method='label'
+            )
+            
+            timestamp_width = timestamp_clip.w
+            
+            def timestamp_pos(t):
+                pip_x, pip_y = pip_position_func(t)
+                return (pip_x + pip_width - timestamp_width - res_scale(15), 
+                        pip_y + pip_height - control_bar_height + res_scale(20))
+            
+            timestamp_clip = timestamp_clip.set_position(timestamp_pos).set_duration(duration)
+            clips.append(timestamp_clip)
+            
+        except Exception as e:
+            self.logger.warning(f"Timestamp creation failed: {e}")
+        
+        # ============================================================
+        # QUALITY BADGE (optional - shows video quality)
+        # ============================================================
+        
+        try:
+            quality_badge = TextClip(
+                "HD",
+                fontsize=res_scale(12),
+                color='white',
+                font='Arial-Bold',
+                method='label',
+                bg_color=self._to_hex((255, 0, 0)),  # Red background
+            )
+            
+            def quality_pos(t):
+                pip_x, pip_y = pip_position_func(t)
+                return (pip_x + pip_width - res_scale(35), 
+                        pip_y + res_scale(10))  # Top-right of video
+            
+            quality_badge = quality_badge.set_position(quality_pos).set_duration(duration)
+            quality_badge = quality_badge.set_opacity(0.8)
+            clips.append(quality_badge)
+            
+        except Exception as e:
+            self.logger.warning(f"Quality badge creation failed: {e}")
+        
+        self.logger.section_end("YouTube Player Overlay")
+        
+        if clips:
+            return CompositeVideoClip(clips, size=(WIDTH, HEIGHT))
+        else:
+            return None
+
     def create_timing_markers(self, timing_manifest, duration):
         """
         Creates visual timing markers (red=start, green=end) for sync testing.
@@ -1145,7 +1498,7 @@ class QuizVisualEffects:
         green_glow = green_glow.set_opacity(0.15)
         green_glow = green_glow.set_position(('center', correct_y))
         #green_glow = green_glow.set_start(0).set_duration(40)
-        green_glow = green_glow.set_start(reveal_start_time+0.05).set_duration(total_remaining_time)
+        green_glow = green_glow.set_start(reveal_start_time+0.05).set_duration(total_remaining_time-0.05)
 
         clips.insert(0, green_glow) 
         
@@ -1161,7 +1514,7 @@ class QuizVisualEffects:
                 
                 wrong_y = opt_data.get('y_position', res_scale(1050))
                 fade = fade.set_position(('center', wrong_y))
-                fade = fade.set_start(reveal_start_time+0.05).set_duration(total_remaining_time)
+                fade = fade.set_start(reveal_start_time+0.05).set_duration(total_remaining_time-0.05)
                 wrong_option_fades.append(fade)
 
         clips.extend(wrong_option_fades)

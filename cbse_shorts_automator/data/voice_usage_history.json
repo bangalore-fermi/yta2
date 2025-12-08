@@ -13417,5 +13417,1868 @@
     "voice": "KavyaNeural",
     "video_id": null,
     "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:33:46.422033",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:33:46.445388",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:33:46.450161",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:33:46.452571",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:33:46.470347",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:33:47.146247",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:33:47.365792",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:33:47.554130",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:33:47.602211",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:34:10.437810",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:34:10.456785",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:34:10.476170",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:34:10.501921",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:34:10.551652",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:34:11.379650",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:34:11.436698",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:34:11.598279",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T20:34:11.606450",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:08:16.691041",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:08:16.714830",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:08:16.761039",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:08:16.781490",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:08:16.940058",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:08:18.032352",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:08:18.080517",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:08:18.319041",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:08:18.683372",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:11:01.636409",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:11:01.643925",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:11:01.690750",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:11:01.731392",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:11:01.797174",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:11:02.820970",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:11:02.839976",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:11:02.955417",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:11:03.027540",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:14:35.247675",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:14:35.269939",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:14:35.299629",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:14:35.314927",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:14:35.360668",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:14:36.210743",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:14:36.392410",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:14:36.442005",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:14:36.647932",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:16:19.680813",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:16:19.731453",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:16:19.743413",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:16:19.750571",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:16:19.796125",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:16:20.854695",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:16:20.861291",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:16:20.891195",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:16:21.051752",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:17:39.640757",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:17:39.714562",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:17:39.730664",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:17:39.862137",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:17:39.943059",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:17:40.850546",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:17:40.979651",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:17:41.095544",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:17:41.110769",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:19:09.982216",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:19:09.998320",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:19:10.068471",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:19:10.136682",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:19:10.183424",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:19:11.030804",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:19:11.180566",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:19:11.263113",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:19:11.362582",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:28:36.815150",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:28:36.848881",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:28:36.892950",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:28:36.961503",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:28:37.085988",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:28:37.453941",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:28:37.922216",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:28:38.041395",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:28:38.147485",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:32:08.458451",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:32:08.458579",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:32:08.579278",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:32:08.763157",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:32:09.560337",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:32:09.575739",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:32:09.605621",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:32:09.697143",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:32:09.823227",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:41:29.222479",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:41:29.226653",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:41:29.440517",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:41:29.533671",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:41:29.969112",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:41:30.265468",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:41:30.344771",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:41:30.346936",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:41:30.377459",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:49:46.144944",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:49:46.154301",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:49:46.206033",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:49:46.242734",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:49:46.305872",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:49:46.983757",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:49:47.277019",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:49:47.390041",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:49:47.548054",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:52:09.234132",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:52:09.265391",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:52:09.318939",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:52:09.343010",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:52:09.366938",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:52:10.440782",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:52:10.483587",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:52:10.577444",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:52:10.693302",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:56:56.567893",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:56:56.579610",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:56:56.702341",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:56:56.797564",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:56:57.117203",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:56:57.339168",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:56:57.765440",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:56:57.792269",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:56:57.872475",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:58:56.136336",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:58:56.147009",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:58:56.164763",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:58:56.187395",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:58:56.213416",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:58:57.186068",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:58:57.213055",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:58:57.235237",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-07T23:58:57.476977",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:00:33.920657",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:00:34.035932",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:00:34.047607",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:00:34.071668",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:00:34.978975",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:00:35.007823",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:00:35.105617",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:00:35.118037",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:00:35.385497",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:11:30.791213",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:11:30.876072",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:11:30.888964",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:11:30.958383",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:11:30.976613",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:11:31.818704",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:11:31.894192",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:11:32.043704",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:11:32.116869",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:14:03.238694",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:14:03.251603",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:14:03.290436",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:14:03.347797",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:14:03.365294",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:14:04.199750",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:14:04.380823",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:14:04.443187",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:14:04.458803",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:15:01.411714",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:15:01.426046",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:15:01.445956",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:15:01.605725",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:15:01.663698",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:15:02.454769",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:15:02.496339",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:15:02.502380",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:15:02.512611",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:19:54.868552",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:19:55.001930",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:19:55.028525",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:19:55.057529",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "AnanyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:19:55.126412",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:19:55.654137",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:19:56.056445",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:19:56.233998",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:19:56.428650",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:21:36.628796",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:21:36.740050",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:21:36.841429",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:21:36.966469",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:21:37.105517",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:21:37.621633",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:21:37.745023",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:21:37.925641",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:21:38.072219",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:29:30.625741",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:29:30.854109",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:29:30.900986",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:29:31.078718",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:29:31.398625",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:29:31.542116",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:29:31.611498",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:29:31.959817",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T00:29:32.192006",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T04:25:39.363082",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 48,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T04:25:39.661688",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T04:25:39.722008",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 27,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T04:25:39.727513",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 26,
+    "voice": "NeerjaNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T04:25:39.744037",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 56,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T04:25:40.288316",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 22,
+    "voice": "PrabhatNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T04:25:40.665531",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 29,
+    "voice": "RehaanNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T04:25:40.688741",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 11,
+    "voice": "AaravNeural",
+    "video_id": null,
+    "cost_usd": 0
+  },
+  {
+    "timestamp": "2025-12-08T04:25:41.036325",
+    "account": "edge",
+    "provider": "edge",
+    "chars": 119,
+    "voice": "KavyaNeural",
+    "video_id": null,
+    "cost_usd": 0
   }
 ]

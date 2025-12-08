@@ -2,7 +2,7 @@
 git add .
 
 # 2. Commit the staged changes with a message
-git commit -m "one level of visual effects and test scripts implemented"
+git commit -m "pip wavymotion function under implementation... to be continued.. "
 
 # 3. Push the new commit to the remote GitHub repository
 git push

@@ -21,6 +21,8 @@ from usp_content_variations import USPContent
 from visual_effects_quiz import QuizVisualEffects
 from visual_effects_quiz import res_scale, set_resolution, WIDTH, HEIGHT
 
+YOUTUBE_CONTROLS_ENABLED = True
+
 WIDTH = 1080
 HEIGHT = 1920
 #WIDTH = 270
@@ -257,7 +259,7 @@ class QuizTemplate:
         src_vid = VideoFileClip(video_path)
 
         # Configure PIP size
-        PIP_HEIGHT = res_scale(495)  # Adjust this value (225 = small, 400 = medium, 495 = large)
+        PIP_HEIGHT = res_scale(333)  # Adjust this value (225 = small, 400 = medium, 495 = large)
         PIP_Y = res_scale(150)  # Top safe zone
         vfx_quiz.pip_size = (int(PIP_HEIGHT * 16 / 9), PIP_HEIGHT)
 
@@ -276,7 +278,7 @@ class QuizTemplate:
 
         # Create VFX layers
         backdrop = vfx_quiz.create_particle_backdrop(total_dur)
-        pip = vfx_quiz.create_pip_source_video(src_vid, total_dur)
+        pip = vfx_quiz.create_pip_source_video(src_vid, t_outro)
 
         clips = [backdrop, pip]
         
@@ -315,7 +317,7 @@ class QuizTemplate:
             audio_duration=aud_q.duration,
             start_time=t_q,
             fontsize=res_scale(55),
-            total_remaining_time=total_dur - t_q,
+            total_remaining_time=t_outro - t_q,
             color=theme['highlight'],
             y_offset=LayoutPositions.question_y
         )
@@ -340,28 +342,28 @@ class QuizTemplate:
             {
                 'text': f"A) {script['opt_a_visual']}", 
                 'start_time': t_a, 
-                'duration': total_dur - t_a, 
+                'duration': t_outro - t_a, 
                 'is_correct': False,
                 'y_position': LayoutPositions.options_start_y  # Option A
             },
             {
                 'text': f"B) {script['opt_b_visual']}", 
                 'start_time': t_b, 
-                'duration': total_dur - t_b, 
+                'duration': t_outro - t_b, 
                 'is_correct': False,
                 'y_position': LayoutPositions.options_start_y + LayoutGaps.OPTION_HEIGHT + LayoutGaps.OPTION_SPACING  # Option B
             },
             {
                 'text': f"C) {script['opt_c_visual']}", 
                 'start_time': t_c, 
-                'duration': total_dur - t_c, 
+                'duration': t_outro - t_c, 
                 'is_correct': False,
                 'y_position': LayoutPositions.options_start_y + (LayoutGaps.OPTION_HEIGHT + LayoutGaps.OPTION_SPACING) * 2  # Option C
             },
             {
                 'text': f"D) {script['opt_d_visual']}", 
                 'start_time': t_d, 
-                'duration': total_dur - t_d, 
+                'duration': t_outro - t_d, 
                 'is_correct': False,
                 'y_position': LayoutPositions.options_start_y + (LayoutGaps.OPTION_HEIGHT + LayoutGaps.OPTION_SPACING) * 3  # Option D
             }
@@ -450,7 +452,7 @@ class QuizTemplate:
             options_data=options_data,
             reveal_start_time=t_ans,
             theme=theme,
-            total_remaining_time=total_dur - t_ans,
+            total_remaining_time=t_outro - t_ans,
             confetti_y=LayoutPositions.question_y
         )
         clips.extend(reveal_effects)
@@ -460,6 +462,9 @@ class QuizTemplate:
         EXPLANATION_Y = OPT_START_Y + (GAP * 4) + res_scale(80)
         summary_clip = summary_clip.set_position(('center', LayoutPositions.explanation_y)).set_start(t_ans).set_duration(aud_expl.duration)
         clips.append(force_rgb(summary_clip))
+
+
+        from moviepy.editor import ColorClip
 
         # Shine sweep effect
         shine = ColorClip(size=(WIDTH + res_scale(200), res_scale(15)), color=(255, 255, 255))
@@ -493,11 +498,30 @@ class QuizTemplate:
 
         if cta_banner:
             clips.append(cta_banner)
+            
+        
+        # Optional: Radial wipe transition to outro
+        # This creates a circular mask that expands from center
+        if True:  # Set to False to disable
+            from moviepy.editor import ColorClip
+            import numpy as np
+            
+            # Create a quick flash before outro
+            flash = ColorClip(
+                size=(WIDTH, HEIGHT),
+                color=(255, 255, 255)
+            ).set_opacity(0.3).set_start(t_outro - 0.1).set_duration(0.2)
+            
+            # Insert flash before outro in clips list
+            # (You'll need to do this before CompositeVideoClip creation)    
         # Outro
-        outro = self.engine.create_outro(
-            duration=OUTRO_DURATION, 
+        # Outro - NEW themed version with USP
+        outro = self.engine.create_outro_v2(
+            duration=OUTRO_DURATION,
+            theme=theme,  # Pass theme for colors
+            usp_message=None,  # Random USP message
             cta_text="SUBSCRIBE FOR MORE!"
-        ).set_start(t_outro) # CHANGED: Start time is t_outro
+        ).set_start(t_outro)
         clips.append(outro)
 
         # Audio
@@ -529,7 +553,7 @@ class QuizTemplate:
         final_audio = self.engine.add_background_music(CompositeAudioClip(full_audio_stack), total_dur)
         
         final_raw = CompositeVideoClip(clips, size=(WIDTH, HEIGHT)).set_audio(final_audio)
-        
+
         try:
             self.engine.render_with_effects(final_raw, script, output_path)
         finally:
