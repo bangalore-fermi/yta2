@@ -61,3 +61,21 @@ Thumbs.db
 # debug_test*.py
 # test_*.mp4
 # test_*.pdf
+
+
+# ---------------------------------
+# Visual Engine V3 (Frontend/Node.js)
+# ---------------------------------
+# Dependencies (Huge folder, never commit this)
+**/node_modules/
+
+# Remotion Cache and Build Artifacts
+visual_engine_v3/.remotion/
+visual_engine_v3/out/
+visual_engine_v3/dist/
+visual_engine_v3/.cache/
+
+# Generated Mock Assets (These are re-created by test_mock_payload.py)
+visual_engine_v3/public/scenario_mock.json
+visual_engine_v3/public/mock_audio.mp3
+visual_engine_v3/public/mock_video.mp4

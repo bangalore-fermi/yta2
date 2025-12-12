@@ -1,0 +1,77 @@
+{
+    "meta": {
+        "version": "3.1",
+        "resolution": {
+            "w": 1080,
+            "h": 1920
+        },
+        "seed": 730110,
+        "duration_seconds": 35.0
+    },
+    "assets": {
+        "audio_url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        "video_source_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        "thumbnail_url": "https://via.placeholder.com/1080x1920",
+        "channel_logo_url": "https://via.placeholder.com/150",
+        "font_url": "https://fonts.gstatic.com/s/poppins/v20/pxiByp8kv8JHgFVrLGT9Z1xlFQ.woff2"
+    },
+    "timeline": {
+        "hook": {
+            "start_time": 0.0,
+            "text_content": "\u23f1\ufe0f EXAM READY IN 60 SECONDS \u23f1\ufe0f"
+        },
+        "quiz": {
+            "question": {
+                "text": "Orbital Shape Quantum No.?",
+                "start_time": 3.5
+            },
+            "options": [
+                {
+                    "id": "A",
+                    "text": "Principal (n)",
+                    "start_time": 6.0
+                },
+                {
+                    "id": "B",
+                    "text": "Azimuthal (l)",
+                    "start_time": 7.5
+                },
+                {
+                    "id": "C",
+                    "text": "Magnetic (m)",
+                    "start_time": 9.0
+                },
+                {
+                    "id": "D",
+                    "text": "Spin (s)",
+                    "start_time": 10.5
+                }
+            ]
+        },
+        "timer": {
+            "start_time": 15.0,
+            "duration": 5.0,
+            "label_text": "\u26a1 THINK FAST"
+        },
+        "answer": {
+            "start_time": 20.5,
+            "correct_option_id": "B",
+            "explanation_text": "Determines Shape",
+            "celebration_text": "\u26a1 SUPER QUICK! "
+        },
+        "cta": {
+            "start_time": 25.0,
+            "social_text": "\ud83c\udfaf SUBSCRIBE FOR RAPID MASTERY",
+            "link_text": "\ud83d\udcce Full 7-Min Chapter Below"
+        },
+        "outro": {
+            "start_time": 29.0,
+            "line_1": "\ud83d\udcaf EXAM READY FAST",
+            "line_2": "\u23f1\ufe0f Full Chapters in 7 Minutes"
+        }
+    },
+    "yt_overlay": {
+        "progress_start": 0.15,
+        "progress_end": 0.25
+    }
+}
