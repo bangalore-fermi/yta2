@@ -1,0 +1,32 @@
+{
+  "name": "remotion-webgl-starter",
+  "version": "1.0.0",
+  "description": "Remotion WebGL Scaffolding for Codespaces",
+  "scripts": {
+    "start": "remotion studio",
+    "build": "remotion render",
+    "upgrade": "remotion upgrade",
+    "test": "eslint src --ext ts,tsx,js,jsx"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "4.0.230",
+    "three": "^0.169.0",
+    "@react-three/fiber": "^8.17.10",
+    "@remotion/three": "4.0.230",
+    "@remotion/cli": "4.0.230",
+    "@remotion/eslint-config": "4.0.230"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@types/three": "^0.169.0",
+    "@types/webgl2": "0.0.6",
+    "typescript": "^5.6.3",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
+    "tsx": "^4.19.0"
+  },
+  "packageManager": "npm@10.0.0"
+}

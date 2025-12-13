@@ -1,0 +1,10 @@
+# Dependencies
+/node_modules
+
+# Remotion Artifacts
+/out
+/.cache
+
+# System Files
+.DS_Store
+Thumbs.db

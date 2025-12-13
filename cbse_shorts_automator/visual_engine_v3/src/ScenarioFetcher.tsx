@@ -3,64 +3,33 @@ import { continueRender, delayRender, staticFile } from 'remotion';
 import { VisualScenario } from './types/schema';
 import { Scene } from './Scene';
 
-// 1. IMPORT THE JSON FILE DIRECTLY (Assuming you moved it to src/data/scenario_mock.json)
-import mockData from '../public/scenario_mock.json';
-
-// 2. RESOLVE ALL LOCAL ASSET PATHS IMMEDIATELY
-const resolvedAssets = {
-    // Remove the leading slash from the path ('/assets/mock_video.mp4' -> 'assets/mock_video.mp4')
-    video_source_url: staticFile(mockData.assets.video_source_url.replace(/^\//, '')),
-    //font_url: staticFile(mockData.assets.font_url.replace(/^\//, '')),
-    audio_url: staticFile(mockData.assets.audio_url.replace(/^\//, '')),
-    channel_logo_url: staticFile(mockData.assets.channel_logo_url.replace(/^\//, '')),
-    env_map_url: staticFile(mockData.assets.env_map_url.replace(/^\//, '')),
-    cloud_map_url: staticFile(mockData.assets.cloud_map_url.replace(/^\//, '')),
-    
-    // Use the remote path as-is
-    thumbnail_url: mockData.assets.thumbnail_url,
-};
-
-// 3. CREATE THE FINAL, STATIC SCENARIO OBJECT
-const STATIC_SCENARIO: VisualScenario = {
-    ...(mockData as VisualScenario),
-    assets: resolvedAssets as VisualScenario['assets'],
-};
-
 export const ScenarioFetcher: React.FC = () => {
     const [handle] = useState(() => delayRender());
-    const [scenario] = useState<VisualScenario>(STATIC_SCENARIO);
+    const [scenario, setScenario] = useState<VisualScenario | null>(null);
 
-    useEffect(() => {// --- PRE-LOAD VIDEO ASSET ---
-        const video = document.createElement('video');
-        video.src = scenario.assets.video_source_url; // Uses the staticFile-resolved path
-
-        const onLoaded = () => {
-            console.log("Video asset pre-loaded successfully! Scene should now render.");
-            continueRender(handle); // RELEASE THE LOCK!
-        };
-
-        const onError = (e: Event) => {
-             console.error("Video failed to load or play!", e);
-             continueRender(handle); // Must proceed even on error
-        };
+    useEffect(() => {
+        // In a real app, you might fetch from an API.
+        // For local dev, we fetch the generated mock file from public or import it.
+        // Here we assume the test_mock_payload.py generated it in the root, 
+        // but Remotion needs it in 'public' or imported.
+        // For simplicity in this scaffold, we fetch relative path assuming it's served or copied.
         
-        video.addEventListener('canplaythrough', onLoaded, { once: true });
-        video.addEventListener('error', onError, { once: true });
-        video.load();
-
-        return () => {
-            video.removeEventListener('canplaythrough', onLoaded);
-            video.removeEventListener('error', onError);
-        };
+        // NOTE: In production, the Director passes this data. 
+        // For this Scaffold, we will use a hardcoded fetch to the mock we know exists.
         
-    }, [handle, scenario.assets.video_source_url]);
-    
+        fetch(staticFile('scenario_mock.json')) // Assumes file is moved to public/ or served via proxy
+            .then(res => res.json())
+            .then(data => {
+                setScenario(data);
+                continueRender(handle);
+            })
+            .catch(err => {
+                console.error("Failed to load scenario", err);
+                // Fallback or Error State
+            });
+    }, [handle]);
 
-    if (!scenario)  return (
-             <div style={{ width: '100%', height: '100%', background: 'black', color: 'white', display: 'grid', placeContent: 'center' }}>
-                 Loading Scene Assets...
-             </div>
-         );
+    if (!scenario) return null;
 
     return <Scene scenario={scenario} />;
 };

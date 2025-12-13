@@ -1,0 +1,23 @@
+{
+  "name": "remotion-webgl-project",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "remotion preview src/index.ts",
+    "render": "remotion render src/index.ts MyVideo out/video.mp4"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "4.0.233",
+    "three": "^0.169.0",
+    "@react-three/fiber": "^8.17.10",
+    "@react-three/drei": "^9.114.0",
+    "@remotion/three": "4.0.233"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/three": "^0.169.0",
+    "@types/webgl2": "^0.0.6",
+    "typescript": "^5.6.3"
+  }
+}
