@@ -1,0 +1,90 @@
+import React, { useEffect, useState } from 'react';
+import { continueRender, delayRender, staticFile } from 'remotion';
+import { VisualScenario } from './types/schema';
+import { Scene } from './Scene';
+
+export const ScenarioFetcher: React.FC = () => {
+    const [handle] = useState(() => delayRender());
+    const [scenario, setScenario] = useState<VisualScenario | null>(null);
+
+    useEffect(() => {
+        // In a real app, you might fetch from an API.
+        // For local dev, we fetch the generated mock file from public or import it.
+        // Here we assume the test_mock_payload.py generated it in the root, 
+        // but Remotion needs it in 'public' or imported.
+        // For simplicity in this scaffold, we fetch relative path assuming it's served or copied.
+        
+        // NOTE: In production, the Director passes this data. 
+        // For this Scaffold, we will use a hardcoded fetch to the mock we know exists.
+        let isVideoLoaded = false;
+        let isDataFetched = false;
+        
+        // Helper function to continue rendering only when BOTH are true
+        const attemptContinueRender = () => {
+            if (isVideoLoaded && isDataFetched) {
+                continueRender(handle);
+            }
+        };
+        fetch('/scenario_mock.json') // Assumes file is moved to public/ or served via proxy
+            .then(res => res.json())
+            .then(data => {
+                const resolvedVideoPath = staticFile(data.assets.video_source_url.replace(/^\//, ''));
+                const updatedScenario: VisualScenario = {
+                    ...data,
+                    assets: {
+                        ...data.assets,
+                        // Update the scenario with the Remotion-resolved path
+                        video_source_url: resolvedVideoPath, 
+                        // Do the same for other local assets if needed
+                        font_url: staticFile(data.assets.font_url.replace(/^\//, '')),
+                        // etc.
+                    },
+                };
+                setScenario(updatedScenario);
+                isDataFetched = true;
+                attemptContinueRender();
+                
+                // --- B. PRE-LOAD VIDEO ASSET (nested for immediate access to path) ---
+                const video = document.createElement('video');
+                video.src = resolvedVideoPath;
+
+                const onLoaded = () => {
+                    console.log("Video asset pre-loaded.");
+                    isVideoLoaded = true;
+                    attemptContinueRender();
+                };
+                const onError = (e: Event) => {
+                     console.error("Video failed to load:", e);
+                     // Must proceed even on error
+                     isVideoLoaded = true;
+                     attemptContinueRender();
+                };
+
+                video.addEventListener('canplaythrough', onLoaded, { once: true });
+                video.addEventListener('error', onError, { once: true });
+                video.load();
+                // Cleanup is handled by the return function
+                return () => {
+                    video.removeEventListener('canplaythrough', onLoaded);
+                    video.removeEventListener('error', onError);
+                };
+                //continueRender(handle);
+            })
+            .catch(err => {
+                console.error("Failed to load scenario", err);isDataFetched = true;
+                isVideoLoaded = true; // Assume failure, but release the lock
+                continueRender(handle);
+                // Fallback or Error State
+            });
+            // Return a cleanup function for the effect
+        return () => {};
+    }, [handle]);
+
+    if (!scenario)  return (
+             <div style={{ width: '100%', height: '100%', background: 'black', color: 'white', display: 'grid', placeContent: 'center' }}>
+                 Loading Scene Assets...
+             </div>
+         );
+
+    return <Scene scenario={scenario} />;
+};

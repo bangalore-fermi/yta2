@@ -2,7 +2,7 @@
 git add .
 
 # 2. Commit the staged changes with a message
-git commit -m "changed woff2 to woff fonts and fixed texture error for cloud"
+git commit -m "one level video display achieved"
 
 # 3. Push the new commit to the remote GitHub repository
 git push
