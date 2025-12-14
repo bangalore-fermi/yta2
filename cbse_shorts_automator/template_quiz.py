@@ -207,15 +207,29 @@ class QuizTemplate:
 
         def generate_single_audio(key, text):
             path = f"{temp_dir}/{vid_id}_{key}.mp3"
-            voice_mgr.generate_audio_with_specific_voice(text, path, selected_voice_key, provider='google')
+            voice_mgr.generate_audio_with_specific_voice(text, path, selected_voice_key, provider='edge')
             return key, path
 
-        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-            futures = [executor.submit(generate_single_audio, k, t) for k, t in audio_tasks.items()]
-            for future in concurrent.futures.as_completed(futures):
-                k, path = future.result()
-                generated_audio_paths[k] = path
+        #with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+            #futures = [executor.submit(generate_single_audio, k, t) for k, t in audio_tasks.items()]
+            #for future in concurrent.futures.as_completed(futures):
+                #k, path = future.result()
+                #generated_audio_paths[k] = path
+                #audio_files.append(path)
+        
+        for k, t in audio_tasks.items():
+            # 3. Execute the function directly (blocking until it returns)
+            try:
+                k_result, path = generate_single_audio(k, t)
+                
+                # 4. Collect the results
+                generated_audio_paths[k_result] = path
                 audio_files.append(path)
+                
+            except Exception as e:
+                # Handle exceptions from generate_single_audio if necessary
+                print(f"Error processing task for key {k}: {e}")
+                # Depending on your logic, you might want to break or continue here
 
         aud_hook = AudioFileClip(generated_audio_paths['hook'])
         aud_q = AudioFileClip(generated_audio_paths['question'])
@@ -554,8 +568,9 @@ class QuizTemplate:
         
         final_raw = CompositeVideoClip(clips, size=(WIDTH, HEIGHT)).set_audio(final_audio)
 
-        #try:
-        #    self.engine.render_with_effects(final_raw, script, output_path)
+        try:
+            #self.engine.render_with_effects(final_raw, script, output_path)
+            print(f"  Trying:")
         finally:
             if self.engine.config.get('DELETE_TEMP_FILES', True):
                 import glob

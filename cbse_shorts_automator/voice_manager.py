@@ -232,6 +232,9 @@ class VoiceManager:
         Returns:
             AudioFileClip: MoviePy audio clip object
         """
+
+        
+        #print(f"1.{provider}")
         # Step 1: Get voice configuration
         if provider == 'google' and voice_key in GOOGLE_VOICES:
             voice_config = GOOGLE_VOICES[voice_key]
@@ -247,6 +250,9 @@ class VoiceManager:
                 provider = 'edge'
             else:
                 raise ValueError(f"Voice '{voice_key}' not found in Google or Edge voices")
+
+        
+        #print(f"2.{provider}")
         
         # Step 2: Estimate characters and check quota
         chars_needed = self._estimate_chars_needed(text)
@@ -257,6 +263,8 @@ class VoiceManager:
                 chars_needed,
                 self.google_accounts
             )
+
+            print(f"3.{available_account}")
             
             if available_account:
                 success, chars_used, error_msg = self._synthesize_with_provider(
@@ -274,15 +282,17 @@ class VoiceManager:
             else:
                 print(f"   ⚠️ No Google account with sufficient quota. Using Edge TTS.")
                 provider = 'edge'
-        
+
+        provider = 'edge'
         # Step 4: Use Edge TTS (fallback or requested)
         if provider == 'edge':
+            print(f" provider: {provider}")
             # Map to equivalent Edge voice if we were trying Google
             if voice_key in GOOGLE_VOICES:
                 # Try to find similar Edge voice (same gender)
                 edge_voice_key = get_random_edge_voice()  # Fallback to random
                 voice_config = EDGE_VOICES[edge_voice_key]
-                print(f" Voice used: {edge_voice_key}")
+                print(f" Voice used for {output_path}: {edge_voice_key}")
                 
             else:
                 edge_voice_key = voice_key
@@ -290,12 +300,27 @@ class VoiceManager:
             success, chars_used, error_msg = self._synthesize_with_provider(
                 text, output_path, 'edge', None, voice_config
             )
+
+            print(f" 0.edge: {success}:{output_path}")
+            try:
+                if success:
+                
+                    print(f" 1.edge: {success}:{output_path}")
+                    self.tracker.log_usage('edge', 'edge', chars_used, edge_voice_key)
+                    #print(f" 2.edge: {success}:{output_path}")
+                    self.last_used_system = f"Edge-{edge_voice_key}"
+                    #print(f" 3.edge: {success}:{output_path}")
+                    self.char_count = chars_used
+                    #print(f" 4.edge: {success}:{output_path}")
+                    generated_aud_file=AudioFileClip(output_path);
+                    print(f" 5.edge: {success}:{output_path}")
+                    return generated_aud_file
+
             
-            if success:
-                self.tracker.log_usage('edge', 'edge', chars_used, edge_voice_key)
-                self.last_used_system = f"Edge-{edge_voice_key}"
-                self.char_count = chars_used
-                return AudioFileClip(output_path)
+            except Exception as e:
+                print(f"   ❌ ERROR: {e}")
+                import traceback
+                traceback.print_exc()
         
         # Step 5: Complete failure
         raise Exception(f"Failed to synthesize audio with voice '{voice_key},{provider}'")

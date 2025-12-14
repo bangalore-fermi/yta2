@@ -1,0 +1,79 @@
+{
+    "meta": {
+        "version": "1.0.0",
+        "resolution": {
+            "w": 540,
+            "h": 960
+        },
+        "seed": 6503,
+        "duration_seconds": 42.18
+    },
+    "assets": {
+        "audio_url": "/assets/TEST_FULL_QUIZ_V1_final_audio.mp3",
+        "video_source_url": "/assets/source_video.mp4",
+        "thumbnail_url": "/assets/thumbnail.jpg",
+        "channel_logo_url": "/assets/logo.png",
+        "font_url": "/assets/font.woff",
+        "env_map_url": "/assets/environment.hdr",
+        "cloud_map_url": "/assets/cloud.png"
+    },
+    "timeline": {
+        "hook": {
+            "start_time": 0,
+            "text_content": "\u26a1 SPEED LEARNING MODE ON \u26a1"
+        },
+        "quiz": {
+            "question": {
+                "text": "Orbital Shape Quantum No.?",
+                "start_time": 2.66
+            },
+            "options": [
+                {
+                    "id": "A",
+                    "text": "Principal (n)",
+                    "start_time": 5.95
+                },
+                {
+                    "id": "B",
+                    "text": "Azimuthal (l)",
+                    "start_time": 8.18
+                },
+                {
+                    "id": "C",
+                    "text": "Magnetic (m)",
+                    "start_time": 10.629999999999999
+                },
+                {
+                    "id": "D",
+                    "text": "Spin (s)",
+                    "start_time": 12.979999999999999
+                }
+            ]
+        },
+        "timer": {
+            "start_time": 15.159999999999998,
+            "duration": 3.0,
+            "label_text": "\u26a1 THINK FAST"
+        },
+        "answer": {
+            "start_time": 18.159999999999997,
+            "correct_option_id": "D",
+            "explanation_text": "Determines Shape",
+            "celebration_text": "Great job!"
+        },
+        "cta": {
+            "start_time": 26.179999999999996,
+            "social_text": "\u26a1 SUBSCRIBE FOR QUICK CONCEPTS",
+            "link_text": "\ud83d\udd25 No-Boring Full Video in Link"
+        },
+        "outro": {
+            "start_time": 32.17999999999999,
+            "line_1": "\u26a1 FASTEST REVISIONS",
+            "line_2": "\ud83c\udfaf Subscribe for Quick Mastery"
+        }
+    },
+    "yt_overlay": {
+        "progress_start": 2.66,
+        "progress_end": 19.159999999999997
+    }
+}

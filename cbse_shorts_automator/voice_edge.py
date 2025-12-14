@@ -67,19 +67,30 @@ class EdgeVoiceEngine:
         Raises:
             Exception: If synthesis fails
         """
-        communicate = edge_tts.Communicate(
-            text,
-            voice_config['name'],
-            pitch=voice_config['pitch'],
-            rate=voice_config['rate']
-        )
-        await communicate.save(output_path)
+        try:
+            communicate = edge_tts.Communicate(
+                text,
+                "en-US-AndrewNeural"#,
+                #pitch=voice_config['pitch'],
+                #rate=voice_config['rate']
+            )
+            
+            await communicate.save(output_path)
+
+        except Exception as e:
+            #print(f"   ❌ {output_path}:ERROR: {e}")
+            #print(f"{text}:{voice_config['name']}")
+            #import traceback
+            #traceback.print_exc()
+            raise Exception(f"{e}")
+
+        print(f"{output_path}:{os.path.getsize(output_path)}")
         
         # Verify file was created
         if not os.path.exists(output_path) or os.path.getsize(output_path) == 0:
             raise Exception("Generated audio file is 0 bytes")
     
-    def synthesize(self, text, output_path, voice_config, max_retries=4):
+    def synthesize(self, text, output_path, voice_config, max_retries=5):
         """
         Synthesize speech using Edge TTS with exponential backoff retry.
         
@@ -110,7 +121,7 @@ class EdgeVoiceEngine:
                 )
                 
                 # Verify file exists
-                if os.path.exists(output_path):
+                if os.path.exists(output_path) and os.path.getsize(output_path) > 0:
                     return True, chars_used, None
                 else:
                     raise FileNotFoundError(f"Audio file not generated: {output_path}")
@@ -120,9 +131,9 @@ class EdgeVoiceEngine:
                 
                 # Check for retryable errors (429 rate limits, connection issues)
                 if any(keyword in error_msg for keyword in [
-                    "429", "Connection", "Handshake", "NoAudioReceived"
+                    "429", "Connection", "Handshake", "NoAudioReceived", "received"
                 ]):
-                    wait_time = 5 + (attempt * 5)  # 5s, 10s, 15s, 20s
+                    wait_time = 5 + (attempt * 3)  # 5s, 10s, 15s, 20s
                     print(f"   ⚠️ Edge TTS Retry ({attempt+1}/{max_retries}): "
                           f"{error_msg[:50]}... Waiting {wait_time}s")
                     time.sleep(wait_time)

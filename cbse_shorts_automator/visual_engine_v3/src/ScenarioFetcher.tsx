@@ -17,7 +17,7 @@ export const ScenarioFetcher: React.FC = () => {
         // NOTE: In production, the Director passes this data. 
         // For this Scaffold, we will use a hardcoded fetch to the mock we know exists.
         
-        fetch(staticFile('scenario_mock.json')) // Assumes file is moved to public/ or served via proxy
+        fetch(staticFile('scenario_data.json')) // Assumes file is moved to public/ or served via proxy
             .then(res => res.json())
             .then(data => {
                 setScenario(data);
