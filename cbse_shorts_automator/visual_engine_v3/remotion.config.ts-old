@@ -1,0 +1,17 @@
+import { Config } from '@remotion/cli/config';
+
+// Cast Config to any to bypass the "FlatConfig" property errors
+const Cfg = Config as any;
+
+Cfg.setConcurrency(8);
+Cfg.setCodec('h264');
+Cfg.setPixelFormat('yuv420p');
+Cfg.setVideoImageFormat('jpeg');
+
+// This will now work without errors
+Cfg.overrideFfmpeg((ffmpeg: any) => {
+  return {
+    ...ffmpeg,
+    args: [...ffmpeg.args, '-preset', 'ultrafast'],
+  };
+});

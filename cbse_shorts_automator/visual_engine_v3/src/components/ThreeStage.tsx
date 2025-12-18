@@ -49,6 +49,7 @@ export const ThreeStage: React.FC<ThreeStageProps> = ({
 
     // --- VIDEO LOADING ---
     useEffect(() => {
+        //console.log("UnResolved:",{videoUrl})
         if (!videoUrl) return;
         const resolvedSrc = staticFile(videoUrl);
         const vid = document.createElement('video');
@@ -56,7 +57,7 @@ export const ThreeStage: React.FC<ThreeStageProps> = ({
         vid.crossOrigin = 'Anonymous';
         vid.muted = true;
         vid.playsInline = true;
-        
+        //console.log("Resolved1:",{resolvedSrc})
         const texture = new VideoTexture(vid);
         texture.minFilter = LinearFilter;
         texture.magFilter = LinearFilter;
@@ -68,8 +69,8 @@ export const ThreeStage: React.FC<ThreeStageProps> = ({
     // --- SYNC & ANIMATION ---
     useFrame((state) => {
         if (groupRef.current) {
-            groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.05;
-            groupRef.current.rotation.x = Math.cos(state.clock.elapsedTime * 0.3) * 0.02;
+            groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.04) * 0.05;
+            groupRef.current.rotation.x = Math.cos(state.clock.elapsedTime * 0.08) * 0.02;
         }
         if (videoTexture && videoTexture.image) {
             const vid = videoTexture.image as HTMLVideoElement;

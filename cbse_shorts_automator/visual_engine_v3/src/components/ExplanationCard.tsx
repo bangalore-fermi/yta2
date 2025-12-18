@@ -21,13 +21,13 @@ export const estimateExplanationLayout = (text: string, width: number, fontSizeI
     const maxLines=4;
     let charsPerLine=Math.ceil(text.length / maxLines);
     const MaxCharWidth=textWidth/charsPerLine;
-    const CharWidthFactor=0.8;
-    const fontSize = MaxCharWidth / CharWidthFactor; 
-    const lineHeight = fontSize * 1.5;
+    const CharWidthFactor=0.7;
+    const fontSize = Math.min(MaxCharWidth / CharWidthFactor,fontSizeInp); 
+    const lineHeight = fontSize * 0.9;
     
     // Estimate Height
     const avgCharWidth = fontSize * CharWidthFactor;
-    //charsPerLine = textWidth / avgCharWidth;
+    charsPerLine = textWidth / avgCharWidth;
     const lines = Math.ceil(text.length / charsPerLine);
     const textHeight = lines * lineHeight;
     const boxHeight = textHeight + (padding * 2);

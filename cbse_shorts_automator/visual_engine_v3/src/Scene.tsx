@@ -30,8 +30,12 @@ interface SceneProps {
 const SceneContent: React.FC<SceneProps> = ({ scenario }) => {
     const frame = useCurrentFrame();
     const { fps } = useVideoConfig();
-    const { height } = useThree((state) => state.viewport); // Dynamic Viewport Height
+    const { height : unscaledheight} = useThree((state) => state.viewport); // Dynamic Viewport Height
     const currentTime = frame / fps;
+
+    const viewport_height_scalefactor=interpolate(frame, [0, 50], [0.8, 1], { extrapolateRight: 'clamp' });
+
+    const height=unscaledheight * viewport_height_scalefactor;
 
     // --- HELPER: NVU TO WORLD COORDINATES ---
     // NVU 0.0 is Bottom (-height/2)
@@ -79,7 +83,7 @@ const SceneContent: React.FC<SceneProps> = ({ scenario }) => {
     //const camZ = interpolate(frame, [0, 50], [6, 5], { extrapolateRight: 'clamp' });
 
     // --- CAMERA ANIMATION ---
-    const initialCamZ = interpolate(frame, [0, 50], [9, 8], { extrapolateRight: 'clamp' });
+    const initialCamZ = 5;
     
     // 1. Camera Z-Pull: Pull back by 0.2 units during the timing phase
     const Z_PULL_START_FRAME = timeline.timer.start_time * fps;
@@ -171,7 +175,7 @@ const SceneContent: React.FC<SceneProps> = ({ scenario }) => {
     const showExplanation = currentTime >= t_reveal && currentTime < timeline.cta.start_time + .05;
     // --- SAFETY BOUNDARY ---
     // Safe Zone = 0.15 NVU. 
-    const SAFE_ZONE_Y = nvuToWorld(0.15);
+    const SAFE_ZONE_Y = nvuToWorld(-1);
 
     
 
@@ -186,7 +190,7 @@ const SceneContent: React.FC<SceneProps> = ({ scenario }) => {
     const explanationY = questionBottomWorld - 0.6 - GAP - (height * 0.09);
     // --- NEW: CTA LAYOUT CALCULATIONS ---
     const explCardWidth = SAFE_MAX_WIDTH * .9;
-    const ExplanationFontSize=0.001*viewportWidth;
+    const ExplanationFontSize=0.05*viewportWidth;
     const explLayout = estimateExplanationLayout(explanationText, explCardWidth, ExplanationFontSize);
     
     const EXPLANATION_CARD_HEIGHT = explLayout.boxHeight; // Approximation from ExplanationCard logic (REQUIRED)
@@ -394,6 +398,7 @@ const SceneContent: React.FC<SceneProps> = ({ scenario }) => {
                     theme={theme}
                     fontSize={height * 0.05}
                     fontUrl={scenario.assets.font_url}
+                    maxAvailableWidth={viewportWidth}
                 />
             )}
 

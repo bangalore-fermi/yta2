@@ -2,7 +2,7 @@
 git add .
 
 # 2. Commit the staged changes with a message
-git commit -m "included the vid_out_filename.txt file for checking Colab GPU workflow"
+git commit -m "one more level of stable point. test_all_templates_webgl.py for creating the final rendering"
 
 # 3. Push the new commit to the remote GitHub repository
 git push

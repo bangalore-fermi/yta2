@@ -9,6 +9,7 @@ interface AnimatedHookProps {
     theme: { primary: string; [key: string]: any };
     fontSize: number; // This is now your "Target" size (max size)
     fontUrl?: string;
+    maxAvailableWidth: number;
 }
 
 export const AnimatedHook: React.FC<AnimatedHookProps> = ({
@@ -16,7 +17,8 @@ export const AnimatedHook: React.FC<AnimatedHookProps> = ({
     seed,
     theme,
     fontSize,
-    fontUrl
+    fontUrl,
+    maxAvailableWidth
 }) => {
     const frame = useCurrentFrame();
     const { fps } = useVideoConfig();
@@ -25,7 +27,7 @@ export const AnimatedHook: React.FC<AnimatedHookProps> = ({
     // --- NEW: DYNAMIC FONT SCALING ---
     const finalFontSize = useMemo(() => {
         // 1. Define the safe zone (90% of screen width)
-        const maxAvailableWidth = viewport.width * 0.9;
+        //const maxAvailableWidth = viewport.width * 0.9;
         
         // 2. Estimate current text width
         // Heuristic: Average character width is roughly 0.6x the font size for standard fonts.

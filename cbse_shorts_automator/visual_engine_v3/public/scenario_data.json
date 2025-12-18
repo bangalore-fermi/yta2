@@ -5,8 +5,8 @@
             "w": 540,
             "h": 960
         },
-        "seed": 9689,
-        "duration_seconds": 47.22
+        "seed": 9350,
+        "duration_seconds": 45.94
     },
     "assets": {
         "audio_url": "/assets/TEST_FULL_QUIZ_V1_final_audio.mp3",
@@ -20,60 +20,60 @@
     "timeline": {
         "hook": {
             "start_time": 0,
-            "text_content": "\ud83d\udcaf QUICK CONCEPTS, BIG SCORES \ud83d\udcaf"
+            "text_content": "\u2728 SHORT, SWEET, SMART \u2728"
         },
         "quiz": {
             "question": {
-                "text": "Daniell cell, E_ext = 1.1V. What happens?",
-                "start_time": 3.43
+                "text": "Daniell cell: Eext = 1.1 V. What happens?",
+                "start_time": 3.22
             },
             "options": [
                 {
                     "id": "A",
-                    "text": "Current flows from Cu to Zn",
-                    "start_time": 7.82
+                    "text": "Galvanic cell",
+                    "start_time": 8.96
                 },
                 {
                     "id": "B",
-                    "text": "No current, no reaction",
-                    "start_time": 10.440000000000001
+                    "text": "Electrolytic cell",
+                    "start_time": 10.47
                 },
                 {
                     "id": "C",
-                    "text": "Zn deposits at anode",
-                    "start_time": 12.840000000000002
+                    "text": "Reaction stops",
+                    "start_time": 12.17
                 },
                 {
                     "id": "D",
-                    "text": "Functions as electrolytic cell",
-                    "start_time": 15.170000000000002
+                    "text": "Electrons Cu to Zn",
+                    "start_time": 13.83
                 }
             ]
         },
         "timer": {
-            "start_time": 17.64,
+            "start_time": 16.35,
             "duration": 3.0,
             "label_text": "\ud83c\udfaf FAST BRAIN"
         },
         "answer": {
-            "start_time": 20.64,
-            "correct_option_id": "B",
-            "explanation_text": "At E_ext = 1.1V, the opposing voltage balances cell potential.",
+            "start_time": 19.35,
+            "correct_option_id": "C",
+            "explanation_text": "At Eext = 1.1 V, reaction stops. No current flows.",
             "celebration_text": "Great job!"
         },
         "cta": {
-            "start_time": 34.22,
-            "social_text": "\ud83d\udcaf JOIN THE FAST LEARNERS CLUB",
-            "link_text": "\ud83c\udfaf Complete Fast Revision in Link"
+            "start_time": 32.77,
+            "social_text": "\ud83c\udfaf SUBSCRIBE FOR RAPID MASTERY",
+            "link_text": "\ud83d\udd25 No-Boring Full Video in Link"
         },
         "outro": {
-            "start_time": 40.22,
-            "line_1": "\u26a1 SPEED LEARNING",
-            "line_2": "\ud83d\ude80 Fast, Fun, Effective"
+            "start_time": 38.940000000000005,
+            "line_1": "\ud83d\udca5 RAPID MASTERY",
+            "line_2": "\ud83d\udcd6 Subscribe for Quick Prep"
         }
     },
     "yt_overlay": {
-        "progress_start": 3.43,
-        "progress_end": 21.64
+        "progress_start": 3.22,
+        "progress_end": 20.35
     }
 }

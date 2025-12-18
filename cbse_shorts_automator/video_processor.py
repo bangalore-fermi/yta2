@@ -73,12 +73,13 @@ class VideoProcessor:
         if keyword and len(keyword) > 3:
             for seg in segments:
                 if seg['start'] >= last_end_time and keyword.lower() in seg['text'].lower():
-                    if self.debug: print(f"   ✅ Found '{keyword}' at {seg['start']:.2f}s")
+                    #if self.debug: print(f"   ✅ Found '{keyword}' at {seg['start']:.2f}s")
+                    print(f"   ✅ Found '{keyword}' at {seg['start']:.2f}s")
                     return seg['start']
         
         # Strategy 2: Linear Flow (Fallback)
         # Jumps 1.5s forward to ensure visual change
-        return last_end_time + 45
+        return last_end_time + 40
 
     def apply_micro_zoom(self, clip, index, duration):
         """

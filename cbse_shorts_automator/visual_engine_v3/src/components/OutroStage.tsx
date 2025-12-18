@@ -20,7 +20,7 @@ export const OutroStage: React.FC<OutroStageProps> = ({ scenario, fps, t_outro_s
     const { timeline, assets } = scenario;
     const { viewport } = useThree();
 
-    const planeScaleFactor=0.25
+    const planeScaleFactor=0.25*.6
     const LogoScaleFactor=0.4
 
     // Calculate the scale factor based on viewport/design

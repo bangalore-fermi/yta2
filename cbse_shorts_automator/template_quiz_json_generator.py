@@ -149,13 +149,13 @@ class QuizTemplate:
         OUTRO_DURATION = 7.0
         total_dur = t_outro + OUTRO_DURATION
 
-        # print(f"   🧠 AI Watching video to find relevant clips ({int(total_dur)}s)...")
-        # src_vid = video_proc.prepare_video_for_short(video_path, total_dur, script=script, width=WIDTH)
-        # src_vid.write_videofile(
-        #     SOURCE_VIDEO_PATH,
-        #     codec='libx264',  # Standard codec for MP4 files # Standard audio codec
-        #     fps=10             # Set the desired frames per second (e.g., 24, 30, or original fps)
-        # )
+        print(f"   🧠 AI Watching video to find relevant clips ({int(total_dur)}s)...")
+        src_vid = video_proc.prepare_video_for_short(video_path, total_dur, script=script, width=WIDTH)
+        src_vid.write_videofile(
+            SOURCE_VIDEO_PATH,
+            codec='libx264',  # Standard codec for MP4 files # Standard audio codec
+            fps=30             # Set the desired frames per second (e.g., 24, 30, or original fps)
+        )
 
         # 3. Final Audio Generation
         print("   🔊 Compiling final audio track...")
